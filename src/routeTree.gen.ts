@@ -10,33 +10,85 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedMyPostsRouteImport } from './routes/_authenticated/my-posts'
+import { Route as AuthenticatedReportRouteImport } from './routes/_authenticated/report'
+import { Route as ItemsItemIdRouteImport } from './routes/items.$itemId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedMyPostsRoute = AuthenticatedMyPostsRouteImport.update({
+  id: '/my-posts',
+  path: '/my-posts',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedReportRoute = AuthenticatedReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ItemsItemIdRoute = ItemsItemIdRouteImport.update({
+  id: '/items/$itemId',
+  path: '/items/$itemId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/my-posts': typeof AuthenticatedMyPostsRoute
+  '/report': typeof AuthenticatedReportRoute
+  '/items/$itemId': typeof ItemsItemIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/my-posts': typeof AuthenticatedMyPostsRoute
+  '/report': typeof AuthenticatedReportRoute
+  '/items/$itemId': typeof ItemsItemIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/my-posts': typeof AuthenticatedMyPostsRoute
+  '/_authenticated/report': typeof AuthenticatedReportRoute
+  '/items/$itemId': typeof ItemsItemIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/auth' | '/my-posts' | '/report' | '/items/$itemId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/auth' | '/my-posts' | '/report' | '/items/$itemId'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/my-posts'
+    | '/_authenticated/report'
+    | '/items/$itemId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ItemsItemIdRoute: typeof ItemsItemIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +100,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/my-posts': {
+      id: '/_authenticated/my-posts'
+      path: '/my-posts'
+      fullPath: '/my-posts'
+      preLoaderRoute: typeof AuthenticatedMyPostsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/report': {
+      id: '/_authenticated/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof AuthenticatedReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/items/$itemId': {
+      id: '/items/$itemId'
+      path: '/items/$itemId'
+      fullPath: '/items/$itemId'
+      preLoaderRoute: typeof ItemsItemIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedMyPostsRoute: typeof AuthenticatedMyPostsRoute
+  AuthenticatedReportRoute: typeof AuthenticatedReportRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedMyPostsRoute: AuthenticatedMyPostsRoute,
+  AuthenticatedReportRoute: AuthenticatedReportRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ItemsItemIdRoute: ItemsItemIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

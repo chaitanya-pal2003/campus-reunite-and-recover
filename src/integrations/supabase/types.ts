@@ -14,7 +14,104 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      claims: {
+        Row: {
+          claimant_id: string
+          created_at: string
+          id: string
+          item_id: string
+          message: string
+        }
+        Insert: {
+          claimant_id: string
+          created_at?: string
+          id?: string
+          item_id: string
+          message?: string
+        }
+        Update: {
+          claimant_id?: string
+          created_at?: string
+          id?: string
+          item_id?: string
+          message?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "claims_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      items: {
+        Row: {
+          category: string
+          contact: string | null
+          created_at: string
+          description: string
+          id: string
+          image_url: string | null
+          kind: Database["public"]["Enums"]["item_kind"]
+          location: string
+          occurred_at: string
+          status: Database["public"]["Enums"]["item_status"]
+          tags: string[]
+          title: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          contact?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          kind: Database["public"]["Enums"]["item_kind"]
+          location?: string
+          occurred_at?: string
+          status?: Database["public"]["Enums"]["item_status"]
+          tags?: string[]
+          title: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          contact?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          kind?: Database["public"]["Enums"]["item_kind"]
+          location?: string
+          occurred_at?: string
+          status?: Database["public"]["Enums"]["item_status"]
+          tags?: string[]
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +120,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      item_kind: "lost" | "found"
+      item_status: "open" | "resolved"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +248,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      item_kind: ["lost", "found"],
+      item_status: ["open", "resolved"],
+    },
   },
 } as const

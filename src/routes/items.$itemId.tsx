@@ -127,7 +127,7 @@ function ItemDetail() {
         </Link>
 
         <div className="mt-5 grid gap-8 lg:grid-cols-[1.1fr_1fr]">
-          <div className="overflow-hidden rounded-2xl border bg-card">
+          <div className="glass-surface overflow-hidden rounded-2xl border">
             <ItemPhoto path={item.image_url} alt={item.title} className="h-80 w-full" />
             <div className="space-y-3 p-6">
               <div className="flex flex-wrap items-center gap-2">
@@ -168,7 +168,7 @@ function ItemDetail() {
           </div>
 
           <div className="space-y-6">
-            <section className="rounded-2xl border bg-card p-6">
+            <section className="glass-surface rounded-2xl border p-6">
               <h2 className="inline-flex items-center gap-2 text-lg font-semibold">
                 <Sparkles className="size-4 text-primary" /> Possible matches
               </h2>
@@ -189,7 +189,7 @@ function ItemDetail() {
                       <Link
                         to="/items/$itemId"
                         params={{ itemId: m.id }}
-                        className="flex gap-3 rounded-xl border p-3 transition-colors hover:bg-muted/50"
+                        className="glass-control flex gap-3 rounded-xl border p-3 transition-all hover:-translate-y-0.5 hover:bg-background/75"
                       >
                         <ItemPhoto
                           path={m.image_url}
@@ -219,7 +219,7 @@ function ItemDetail() {
               )}
             </section>
 
-            <section className="rounded-2xl border bg-card p-6">
+            <section className="glass-surface rounded-2xl border p-6">
               <h2 className="text-lg font-semibold">
                 {isOwner ? "People who reached out" : "This is mine / I have seen it"}
               </h2>

@@ -9,7 +9,7 @@ export function AppHeader() {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-20 border-b bg-background/85 backdrop-blur">
+    <header className="glass-surface sticky top-0 z-20 border-b bg-background/70 backdrop-blur-2xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <Link to="/" className="inline-flex items-center gap-2 text-primary">
           <Compass className="size-5" />

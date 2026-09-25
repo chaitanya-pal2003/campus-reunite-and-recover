@@ -67,7 +67,7 @@ function MyPosts() {
             ))}
           </div>
         ) : (data ?? []).length === 0 ? (
-          <div className="mt-8 rounded-xl border border-dashed p-12 text-center">
+          <div className="glass-surface mt-8 rounded-2xl border border-dashed p-12 text-center">
             <p className="text-sm text-muted-foreground">You haven&apos;t posted anything yet.</p>
             <Button asChild className="mt-4">
               <Link to="/report">Post an item</Link>

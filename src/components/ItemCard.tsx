@@ -20,7 +20,7 @@ export function ItemCard({ item }: { item: Item }) {
     <Link
       to="/items/$itemId"
       params={{ itemId: item.id }}
-      className="group overflow-hidden rounded-xl border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+      className="glass-surface group overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.99]"
     >
       <ItemPhoto path={item.image_url} alt={item.title} className="h-40 w-full" />
       <div className="space-y-2 p-4">

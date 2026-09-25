@@ -86,7 +86,7 @@ function AuthPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-campus-hero px-4 py-12">
-      <div className="w-full max-w-md rounded-2xl border bg-card p-8 shadow-sm">
+      <div className="glass-surface w-full max-w-md rounded-3xl border p-8">
         <Link to="/" className="mb-6 inline-flex items-center gap-2 text-primary">
           <Compass className="size-5" />
           <span className="font-display text-lg font-bold">Campus Lost &amp; Found</span>

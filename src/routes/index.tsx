@@ -76,8 +76,8 @@ function Home() {
 
       <section className="bg-campus-hero border-b">
         <div className="mx-auto max-w-6xl px-4 py-14">
-          <p className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
-            <Sparkles className="size-3 text-accent-foreground" /> Auto-suggested matches
+          <p className="glass-control inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground">
+            <Sparkles className="size-3 text-primary" /> Auto-suggested matches
           </p>
           <h1 className="mt-4 max-w-2xl text-4xl font-bold sm:text-5xl">
             Lost something on campus? Someone probably found it.
@@ -136,7 +136,7 @@ function Home() {
             ))}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="mt-10 rounded-xl border border-dashed p-12 text-center">
+          <div className="glass-surface mt-10 rounded-2xl border border-dashed p-12 text-center">
             <h2 className="text-lg font-semibold">Nothing here yet</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Be the first to post a lost or found item.

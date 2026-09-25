@@ -119,7 +119,7 @@ function ReportPage() {
           The more detail you add, the better the automatic match suggestions.
         </p>
 
-        <form onSubmit={onSubmit} className="mt-8 space-y-6 rounded-2xl border bg-card p-6">
+        <form onSubmit={onSubmit} className="glass-surface mt-8 space-y-6 rounded-2xl border p-6">
           <Tabs value={kind} onValueChange={(v) => setKind(v as typeof kind)}>
             <TabsList className="w-full">
               <TabsTrigger value="lost" className="flex-1">
@@ -222,7 +222,7 @@ function ReportPage() {
             <Label htmlFor="photo">Photo</Label>
             <label
               htmlFor="photo"
-              className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed px-4 py-6 text-sm text-muted-foreground hover:bg-muted/50"
+               className="glass-control flex cursor-pointer items-center gap-3 rounded-xl border border-dashed px-4 py-6 text-sm text-muted-foreground transition-all hover:bg-primary/5 hover:text-primary"
             >
               <Upload className="size-4" />
               {file ? file.name : "Add a clear photo of the item"}

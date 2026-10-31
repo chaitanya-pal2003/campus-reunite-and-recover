@@ -119,6 +119,13 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          // Applies the saved (or system) theme before first paint to avoid a flash.
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{var t=localStorage.getItem("campus-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}',
+          }}
+        />
       </head>
       <body>
         {children}

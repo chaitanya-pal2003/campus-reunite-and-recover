@@ -2,6 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { Compass, Plus, LogOut } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/hooks/useAuth";
 
 export function AppHeader() {
@@ -18,6 +19,7 @@ export function AppHeader() {
           </span>
         </Link>
         <nav className="flex items-center gap-2">
+          <ThemeToggle />
           {user ? (
             <>
               <Button asChild variant="ghost" size="sm">

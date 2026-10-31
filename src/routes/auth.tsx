@@ -5,6 +5,7 @@ import { Compass } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
@@ -86,6 +87,7 @@ function AuthPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-campus-hero px-4 py-12">
+      <ThemeToggle className="fixed right-4 top-4 z-20" />
       <div className="glass-surface w-full max-w-md rounded-3xl border p-8">
         <Link to="/" className="mb-6 inline-flex items-center gap-2 text-primary">
           <Compass className="size-5" />

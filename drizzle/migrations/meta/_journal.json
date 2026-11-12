@@ -15,6 +15,20 @@
       "when": 1790261476278,
       "tag": "0001_item_photos_storage_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794491852111,
+      "tag": "0002_restrict_profile_and_photo_reads",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794491890431,
+      "tag": "0003_limit_items_to_open_posts",
+      "breakpoints": true
     }
   ]
 }
